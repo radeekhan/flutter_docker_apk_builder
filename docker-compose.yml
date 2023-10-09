@@ -1,0 +1,38 @@
+version: '3.8'
+services:
+  php:
+    container_name: php
+    image: httpd:latest
+    volumes:
+      - shared-volume:/usr/local/apache2/htdocs
+    ports:
+      - "8080:80"
+
+  flutter-android-nodejs:
+    container_name: Flutter3
+    tty: true
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+      - "6060:6060"
+    volumes:
+      - shared-volume:/home/developer
+  
+  # nodejs-frontend:
+  #   container_name: Frontend
+  #   depends_on:
+  #     - flutter-android-nodejs
+  #   tty: true
+  #   build: 
+  #     context: ./client
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "5173:5173"
+
+  
+
+
+volumes:
+  shared-volume:

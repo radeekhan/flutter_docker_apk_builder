@@ -1,0 +1,60 @@
+<!doctype html>
+  <html>
+    <head>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xterm@4.19.0/css/xterm.css" />
+      <script src="https://cdn.jsdelivr.net/npm/xterm@4.19.0/lib/xterm.js"></script>
+    </head>
+    <body>
+      <script> 
+        function getURL() { 
+          var myform = document.getElementById("gitbox");
+          var formData = new FormData(myform);
+          var object = {};
+          formData.forEach((value, key) => object[key] = value);
+          var path_url = object.links;
+          var path_array=path_url.split('/'); 
+          var path = path_array[4]
+          return "http://localhost:3000/static/"+path+"/app-release.apk";
+          //  fetch("http://localhost:3000/static/"+path+"/app-release.apk")
+        } 
+     </script>
+      <div id="terminal"></div>
+    </head>
+    <form id="gitbox">
+      <input type="text" id="links" name="links"/>
+      <button type="submit">RUN</button>
+    </form>
+    <a href="#" onClick="document.location.href=getURL();">DOWNLOAD APK</a>
+    </body>
+    <script src="frontend.js"></script>
+
+    <script>
+      var myform = document.getElementById("gitbox");
+
+      myform.addEventListener("submit", submitForm);
+
+     function submitForm(e) 
+     {
+     e.preventDefault();
+ 
+    var myform =  document.getElementById("gitbox");
+    
+    var formData = new FormData(myform);
+    var object = {};
+    formData.forEach((value, key) => object[key] = value);
+    var json = JSON.stringify(object);
+    console.log(json)
+
+    fetch("http://localhost:3000/git-url", {
+      method: "POST",
+      headers: {'Content-Type': 'application/json'},
+      body: json
+    })
+
+    }
+    </script>
+
+
+
+  </html>
+
