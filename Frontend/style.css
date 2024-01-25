@@ -1,0 +1,35 @@
+
+
+body{
+    background-image: url('./bg2.png');
+}
+
+#download-button .active{
+    /* background-image: linear-gradient(to right, rgb(0, 255, 140) , rgb(0, 255, 68)); */
+    color: rgb(201, 255, 201);
+}
+
+#download-button .loading {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    box-sizing: border-box;
+    border: 5px solid rgba(0,0,0, 0.2);
+    border-right-color: rgb(245, 239, 239);
+    animation: loading-animation 2s linear infinite;
+}
+
+
+#download-button .loading h3 {
+    display: none;
+
+}
+
+@keyframes loading-animation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

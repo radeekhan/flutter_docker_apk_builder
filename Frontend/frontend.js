@@ -72,3 +72,73 @@ function runCommand(term, command) {
 }
 
 init();
+
+//download-button-loading
+
+// const runButton = document.querySelector('#run-button')
+// const downloadButtonContent = document.querySelector('#download-button div')
+// const downloadButton = document.querySelector('#download-button')
+// runButton.addEventListener('click', toggleButton)
+//
+// function toggleButton() {
+//     const urlPath = setInterval(()=>{
+//         const path = getURL();
+//         if (path==null) {
+//
+//             downloadButtonContent.classList.add('loading');
+//             console.log(path);
+//         }
+//         else{
+//             clearInterval(urlPath);
+//             console.log(path);
+//             downloadButtonContent.classList.remove('loading');
+//             downloadButton.removeAttribute("disabled");
+//             downloadButtonContent.classList.add('active');
+//             downloadButton.addEventListener('click', function () {
+//             window.location.href="http://localhost:3000/static/"+path+"/app-release.apk";
+//             })
+//         }
+//     },250)
+// }
+
+
+// function getURL() { 
+//     var myform = document.getElementById("gitbox");
+//     var formData = new FormData(myform);
+//     var object = {};
+//     formData.forEach((value, key) => object[key] = value);
+//     var path_url = object.links;
+//     var path_array=path_url.split('/'); 
+//     var path = path_array[4]
+//     // var path = "url";
+//     return path;
+//     // return "http://localhost:3000/static/"+path+"/app-release.apk";
+//     //  fetch("http://localhost:3000/static/"+path+"/app-release.apk")
+//   } 
+
+//   function updateCounter() {
+//     // const timeCounter = document.getElementById("timeCounter");
+//     let seconds = 0;
+  
+//     const intervalId = setInterval(() => {
+//       seconds++;
+//     //   timeCounter.textContent = seconds;
+//     console.log(seconds);
+//     downloadButtonContent.classList.add('loading');
+//       // Check if the counter has reached 20 seconds
+//       if (seconds >= 20) {
+//         clearInterval(intervalId);
+//         downloadButtonContent.classList.remove('loading');
+//         enableButton();
+//       }
+//     }, 1000); // Update the counter every second
+//   }
+  
+//   // Function to enable the button
+//   function enableButton() {
+//     const downloadButton = document.querySelector('#download-button')
+//     downloadButton.removeAttribute("disabled");
+//     // button.textContent = "Button Active";
+//   }
+  
+//   // Start the time counter

@@ -41,14 +41,14 @@ server.get('/', (req, res) => {
   res.sendFile(__dirname + '/Frontend/index.html'); 
 })
 
-server.post('/git-url',(req,res)=>{ 
+server.post('/git-url',async (req,res)=>{
     console.log(req.body);
     var path_url=req.body['links'];
     var path=path_url.split('/'); 
     console.log(path_url);
     var path1=path[4];
     console.log(path[4]);
-    ptyProcess.write("bash -c 'cd /home/developer ; git clone "+path_url+" ; cd "+path1+" ; flutter build apk ; mkdir /home/src/server/apks/"+path1 +" ; cp ./build/app/outputs/flutter-apk/app-release.apk /home/src/server/apks/"+path1+"/' \r");
+   ptyProcess.write("bash -c 'cd /home/developer ; git clone "+path_url+" ; cd "+path1+" ; flutter build apk ; mkdir /home/src/server/apks/"+path1 +" ; cp ./build/app/outputs/flutter-apk/app-release.apk /home/src/server/apks/"+path1+"/' \r");
 })
 
 const port = 3000;
