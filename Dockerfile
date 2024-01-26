@@ -37,5 +37,26 @@ RUN flutter doctor
 COPY package.json /home/src/server
 RUN cd /home/src/server && npm install
 COPY . /home/src/server
+
+RUN apt-get update && \
+    apt-get install -y -q --allow-unauthenticated \
+    git \
+    sudo
+RUN usermod -aG sudo root &&  \
+    mkdir -p /home/linuxbrew/.linuxbrew && \
+    chown -R root: /home/linuxbrew/.linuxbrew
+USER root
+RUN /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+USER root
+RUN chown -R $CONTAINER_USER: /home/linuxbrew/.linuxbrew
+ENV PATH="/home/linuxbrew/.linuxbrew/bin:${PATH}"
+USER root
+RUN brew update
+RUN brew doctor
+RUN git config --global --add safe.directory /home/src/flutter
+RUN sudo chown -R $(whoami) /home/src/flutter/
+RUN brew tap leoafarias/fvm
+RUN brew install fvm
+
 # CMD cd /home/src/server && node app.js
 CMD [ "node", "server/backend.js" ]

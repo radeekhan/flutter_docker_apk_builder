@@ -48,7 +48,13 @@ server.post('/git-url',async (req,res)=>{
     console.log(path_url);
     var path1=path[4];
     console.log(path[4]);
-   ptyProcess.write("bash -c 'cd /home/developer ; git clone "+path_url+" ; cd "+path1+" ; flutter build apk ; mkdir /home/src/server/apks/"+path1 +" ; cp ./build/app/outputs/flutter-apk/app-release.apk /home/src/server/apks/"+path1+"/' \r");
+
+    ptyProcess.write("bash /home/src/server/fvm_configure.sh "+path_url+" "+path1+" \r");
+
+   // ptyProcess.write("bash -c 'cp /home/src/server/fvm_configure.sh /home/developer/"+path1+" ; cd home/developer/"+path1+" ; ./fvm_configure.sh "+path_url+" "+path1+"' \r");
+   // ptyProcess.write("bash -c 'cd /home/developer ; git clone "+path_url+" ; cd "+path1+" ' \r");
+   // ptyProcess.write("bash -c 'ls \n appFlutterVersion=$(grep \"flutter: \" \"pubspec.lock\" | awk -F'[\">=/-]' '{print $4}') \n fvm use $appFlutterVersion --y'   \r");
+   // ptyProcess.write("bash -c 'fvm flutter build apk ; mkdir /home/src/server/apks/"+path1 +" ; cp ./build/app/outputs/flutter-apk/app-release.apk /home/src/server/apks/"+path1+"/' \r");
 })
 
 const port = 3000;
